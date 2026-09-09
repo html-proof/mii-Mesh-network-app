@@ -89,7 +89,6 @@ void main() {
     );
   }
 
-
   Future<void> shootChat(
     WidgetTester tester,
     String chatId,
@@ -130,20 +129,20 @@ void main() {
     const m3 = '33333333-3333-4333-8333-333333333333';
     const m4 = '44444444-4444-4444-8444-444444444444';
 
-    Future<void> add(String id, String stored, String status, int t) =>
-        service.db
-            .into(service.db.messages)
-            .insert(
-              MessagesCompanion.insert(
-                id: id,
-                conversationId: 'mesh:a',
-                body: stored,
-                createdAt: t,
-                expiresAt: t + 86400000,
-                status: status,
-                sequence: t,
-              ),
-            );
+    Future<void> add(String id, String stored, String status, int t) => service
+        .db
+        .into(service.db.messages)
+        .insert(
+          MessagesCompanion.insert(
+            id: id,
+            conversationId: 'mesh:a',
+            body: stored,
+            createdAt: t,
+            expiresAt: t + 86400000,
+            status: status,
+            sequence: t,
+          ),
+        );
 
     await add(
       m1,
