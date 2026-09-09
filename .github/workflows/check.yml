@@ -1,0 +1,17 @@
+name: Flutter messaging checks
+on: [push, pull_request]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.47.0'
+          channel: stable
+          cache: true
+      - run: flutter pub get
+      - run: dart run build_runner build
+      - run: dart format --output=none --set-exit-if-changed lib test
+      - run: flutter analyze
+      - run: flutter test test/foundation_test.dart test/queue_integration_test.dart test/ble_packet_test.dart test/mesh_router_test.dart test/mesh_persistence_test.dart test/mesh_permissions_test.dart
